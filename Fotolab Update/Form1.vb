@@ -35,6 +35,7 @@ Public Class Form1
         Dim rd As MySqlDataReader
         Dim data As DataTable = New DataTable
         Dim dataacess As DataTable = New DataTable
+        Dim dataprocess As DataTable = New DataTable
         Dim row As DataRowView
         Dim cmd As New MySqlCommand
         Dim MysqlConnString As String = "server=88.98.99.6; user id=fotolab ; password=Fotolabx3; port=3306; DataBase=Db_remote_printspot_sender"
@@ -46,6 +47,7 @@ Public Class Form1
         cmd.Connection = MysqlConexion
         rd = cmd.ExecuteReader
         data.Load(rd)
+        dataprocess = data.Clone
         'For a = 0 To data.Rows.Count - 1
         '    row = data.DefaultView.Item(a)
         '    RichTextBox1.Text = RichTextBox1.Text & row.Row(1).ToString & vbCrLf
@@ -59,26 +61,38 @@ Public Class Form1
 
 
         'End While
-        ''''dataacess = LeerDatosAccesproducto()
-        dataacess = LeerDatosAccesfuji()
-        'For a = 0 To dataacess.Rows.Count - 1
-        '    For b = 0 To data.Rows.Count - 1
-        '        Dim rowmysql As DataRowView
-        '        Dim rowaccess As DataRowView
-        '        rowmysql = data.DefaultView.Item(b)
-        '        rowaccess = dataacess.DefaultView.Item(a)
-        '        If rowmysql.Row(0).ToString = rowaccess.Row(0).ToString Then
-        '            RichTextBox1.Text = RichTextBox1.Text & rowaccess.Row(2).ToString
-        '        End If
-        '    Next
-        'Next
-        For a = 0 To dataacess.Rows.Count - 1
+        dataacess = LeerDatosAccesproducto()
+        '''' dataacess = LeerDatosAccesfuji()
+        For b = 0 To data.Rows.Count - 1
+            Dim flagdata As Integer = 0
+            For a = 0 To dataacess.Rows.Count - 1
+                Dim rowmysql As DataRowView
+                Dim rowaccess As DataRowView
+
+                rowmysql = data.DefaultView.Item(b)
+                rowaccess = dataacess.DefaultView.Item(a)
+                If rowmysql.Row(0).ToString = rowaccess.Row(0).ToString Then
+                    flagdata = 1
+                    Exit For
+                    'RichTextBox1.Text = RichTextBox1.Text & rowaccess.Row(1).ToString & vbCrLf
+                End If
+            Next
+            If flagdata = 0 Then
+                Dim rowprocess As DataRowView
+                rowprocess = data.DefaultView.Item(b)
+
+                dataprocess.ImportRow(rowprocess.Row)
+            End If
+            flagdata = 0
+        Next
+        For a = 0 To dataprocess.Rows.Count - 1
 
             Dim rowaccess As DataRowView
 
-            rowaccess = dataacess.DefaultView.Item(a)
+            rowaccess = dataprocess.DefaultView.Item(a)
+            RichTextBox1.Text = RichTextBox1.Text & rowaccess.Row(1).ToString & vbCrLf
             '''''LoadMysqlproducto(rowaccess.Item(0), rowaccess.Item(1))
-            LoadMysqlfuji(rowaccess.Item(0), rowaccess.Item(1))
+            ''LoadMysqlfuji(rowaccess.Item(0), rowaccess.Item(1))
         Next
 
         rd.Close()
