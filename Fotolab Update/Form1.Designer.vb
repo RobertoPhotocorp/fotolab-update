@@ -22,52 +22,65 @@ Partial Class Form1
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
+        Me.Estadoproceso = New System.Windows.Forms.ProgressBar()
+        Me.Estado = New System.Windows.Forms.Label()
+        Me.procesados = New System.Windows.Forms.Label()
+        Me.Lbversion = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
-        'Button1
+        'Estadoproceso
         '
-        Me.Button1.Location = New System.Drawing.Point(524, 155)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 0
-        Me.Button1.Text = "Button1"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.Estadoproceso.Location = New System.Drawing.Point(12, 230)
+        Me.Estadoproceso.Name = "Estadoproceso"
+        Me.Estadoproceso.Size = New System.Drawing.Size(596, 60)
+        Me.Estadoproceso.TabIndex = 4
         '
-        'Button2
+        'Estado
         '
-        Me.Button2.Location = New System.Drawing.Point(524, 184)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(75, 23)
-        Me.Button2.TabIndex = 1
-        Me.Button2.Text = "Button2"
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.Estado.AutoSize = True
+        Me.Estado.Location = New System.Drawing.Point(12, 196)
+        Me.Estado.Name = "Estado"
+        Me.Estado.Size = New System.Drawing.Size(40, 13)
+        Me.Estado.TabIndex = 5
+        Me.Estado.Text = "Estado"
         '
-        'RichTextBox1
+        'procesados
         '
-        Me.RichTextBox1.Location = New System.Drawing.Point(216, 82)
-        Me.RichTextBox1.Name = "RichTextBox1"
-        Me.RichTextBox1.Size = New System.Drawing.Size(291, 287)
-        Me.RichTextBox1.TabIndex = 2
-        Me.RichTextBox1.Text = ""
+        Me.procesados.AutoSize = True
+        Me.procesados.Location = New System.Drawing.Point(196, 196)
+        Me.procesados.Name = "procesados"
+        Me.procesados.Size = New System.Drawing.Size(63, 13)
+        Me.procesados.TabIndex = 6
+        Me.procesados.Text = "Procesados"
+        '
+        'Lbversion
+        '
+        Me.Lbversion.AutoSize = True
+        Me.Lbversion.Location = New System.Drawing.Point(526, 9)
+        Me.Lbversion.Name = "Lbversion"
+        Me.Lbversion.Size = New System.Drawing.Size(41, 13)
+        Me.Lbversion.TabIndex = 7
+        Me.Lbversion.Text = "version"
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
-        Me.Controls.Add(Me.RichTextBox1)
-        Me.Controls.Add(Me.Button2)
-        Me.Controls.Add(Me.Button1)
+        Me.ClientSize = New System.Drawing.Size(620, 300)
+        Me.Controls.Add(Me.Lbversion)
+        Me.Controls.Add(Me.procesados)
+        Me.Controls.Add(Me.Estado)
+        Me.Controls.Add(Me.Estadoproceso)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "Form1"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Form1"
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
-
-    Friend WithEvents Button1 As Button
-    Friend WithEvents Button2 As Button
-    Friend WithEvents RichTextBox1 As RichTextBox
+    Friend WithEvents Estadoproceso As ProgressBar
+    Friend WithEvents Estado As Label
+    Friend WithEvents procesados As Label
+    Friend WithEvents Lbversion As Label
 End Class
